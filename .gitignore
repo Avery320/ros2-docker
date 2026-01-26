@@ -49,3 +49,22 @@ qtcreator-*
 
 # Catkin custom files
 CATKIN_IGNORE
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+*.swp
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+*.lnk
+.vs/
+*.vcxproj.user
+*.sln.DotSettings
