@@ -74,6 +74,3 @@ RUN mkdir -p /home/ubuntu/workspace/src && \
 # 設定額外的 ROS 環境變數
 RUN echo "export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp" >> /home/ubuntu/.bashrc
 
-# 切換回 ubuntu 使用者
-USER ubuntu
-WORKDIR /home/ubuntu/workspace
