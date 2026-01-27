@@ -8,61 +8,84 @@
 
 ### ROS2 Base Image (jazzy/)
 
-基礎桌面環境，包含 ROS2 Jazzy 與遠端開發工具，內容：
-- Ubuntu 24.04 (Noble)
-- ROS2 Jazzy Desktop
-- MATE 桌面環境
-- VNC Server (TigerVNC)
-- noVNC Web 介面
-- SSH Server
-- 開發工具：Firefox、VSCodium、Terminator
-- Gazebo 模擬器
+基礎桌面環境，包含 ROS2 Jazzy 與遠端開發工具：
 
-### ROS2 Industrial Robot Image (industrial_robot/)
+- 作業系統: Ubuntu 24.04 (Noble)
+- ROS2: Jazzy Desktop + Gazebo
+- 桌面環境: MATE Desktop
+- 遠端存取: VNC Server (TigerVNC) + noVNC Web 介面 + SSH Server
+- 開發工具: Firefox、VSCodium、Terminator
 
-工業機器人開發環境，繼承 Base Image 並加入機器人控制相關套件。
+Image 名稱: `ros2-desktop-vnc:jazzy`
 
-內容：
-- ros2-control 與 ros2-controllers
-- MoveIt2 運動規劃框架
-- Gazebo 機器人模擬整合
-- RViz2、RQt 視覺化工具
-- 運動學與機器人描述工具
-- Python 工具：transforms3d、ikpy、numpy、scipy
-- 工作空間初始化腳本
+---
 
+### Industrial Robot Image (industrial_robot/)
 
-## 使用方式
+工業機器人開發環境，以 ros2-desktop-vnc:jazzy 為基礎，加入機器人控制相關套件（支援 KUKA、ABB、FANUC、UR 等）：
 
-### 建置 Image
+核心套件:
+- 控制框架: ros2-control, ros2-controllers
+- 運動規劃: MoveIt2, OMPL
+- 模擬整合: Gazebo (ros-gz), gz-ros2-control
+- 視覺化: RViz2, RQt, PlotJuggler
+- 運動學: KDL, urdf-parser, xacro
+- Python 工具: transforms3d, ikpy, numpy, scipy, matplotlib
 
-依序建置兩層 Image：
+預建 Workspace: 容器內已建立標準 colcon workspace 結構 (`src/`, `build/`, `install/`, `log/`)
+
+Image 名稱: `ros2-industrial-robot:jazzy`
+
+---
+
+## 快速開始
+
+### docker build
 
 ```bash
-# ros2-desktop-vnc: jazzy
 cd jazzy && docker build -t ros2-desktop-vnc:jazzy .
 ```
 
 ```bash
-# ros2-industrial-robot: industrial_robot
-cd ../industrial_robot && docker build -t ros2-industrial-robot:jazzy .
+cd industrial_robot && docker build -t ros2-industrial-robot:jazzy .
 ```
 
-### 啟動容器
-
-
-預設帳號密碼：
-- 使用者名稱：ubuntu
-- 密碼：ubuntu
-
-### 初始化工作空間
-
-進入容器後，執行初始化腳本建立 ROS2 workspace：
+### docker-compose up
 
 ```bash
-cd ~/workspace
-bash /home/ubuntu/workspace/../init_workspace.sh
+cd rccn_kuka_dev && docker-compose up -d
 ```
+
+### 建立個別專案
+
+```bash
+# 複製範本
+cp -r rccn_kuka_dev my_project_name
+
+# 編輯 docker-compose.yml，修改以下項目：
+# - container_name
+# - ports (VNC & SSH)
+# - volume name
+```
+
+
+### 容器相關指令
+```bash
+docker-compose up -d # 啟動容器
+docker-compose ps # 查看容器狀態
+docker logs <container_name> # 查看日誌
+docker-compose down # 停止容器
+docker exec -it <container_name> bash # 進入容器
+```
+
+### Volume 管理
+```bash
+docker volume ls # 列出所有 Volumes
+docker volume inspect <volume_name> # 檢視 Volume 內容
+docker volume rm <volume_name> # 刪除 Volume（資料會永久消失）
+```
+
+---
 
 ## 許可證
 

@@ -1,0 +1,28 @@
+# RCCN KUKA Development Environment
+# 專案名稱: rccn_kuka_dev
+# 基於: ros2-industrial-robot:jazzy
+
+services:
+  kuka_dev:
+    image: ros2-industrial-robot:jazzy
+    container_name: rccn_kuka_dev
+    ports:
+      - "6080:80" # VNC Web Interface: http://localhost:6080
+      - "2222:22" # SSH: ssh -p 2222 ubuntu@localhost
+    security_opt:
+      - seccomp=unconfined
+    shm_size: '1gb'
+    volumes:
+      # 使用 Docker Named Volume 管理 workspace，資料完全由 Docker 控制
+      - rccn_workspace:/home/ubuntu/workspace
+    restart: unless-stopped
+    environment:
+      - PASSWORD=ros2000
+    # 登入資訊
+    # VNC: http://localhost:6080 (密碼: ros2000)
+    # SSH: ssh -p 2222 ubuntu@localhost (密碼: ros2000)
+
+    # 定義 Named Volume
+volumes:
+  rccn_workspace:
+    name: rccn_kuka_dev # 明確指定 Volume 名稱
