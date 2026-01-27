@@ -7,6 +7,14 @@
 - Desktop 支持 - VNC 遠端桌面訪問
 - SSH 訪問 - 安全的命令行連接
 
+## 啟動
+
+### docker build
+
+#### 構建 Desktop VNC 環境
+```bash
+cd jazzy && docker build -t ros2-desktop-vnc:jazzy .
+```
 
 ## 許可證
 見 [LICENSE](LICENSE)
