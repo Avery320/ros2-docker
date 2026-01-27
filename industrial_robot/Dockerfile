@@ -2,6 +2,12 @@
 ARG BASE_IMAGE=ros2-desktop-vnc:jazzy
 FROM ${BASE_IMAGE}
 
+# Metadata
+LABEL maintainer="n76124052@gs.ncku.edu.tw"
+LABEL org.opencontainers.image.authors="Avery Tsai"
+LABEL org.opencontainers.image.description="ROS2 Industrial Robot Development Environment"
+LABEL org.opencontainers.image.source="https://github.com/Avery320/ros2-docker"
+
 SHELL ["/bin/bash", "-c"]
 
 # 切換回 root 安裝套件

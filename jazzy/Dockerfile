@@ -2,6 +2,12 @@
 
 FROM ubuntu:noble-20251013
 
+# Metadata
+LABEL maintainer="n76124052@gs.ncku.edu.tw"
+LABEL org.opencontainers.image.authors="Avery Tsai"
+LABEL org.opencontainers.image.description="ROS2 Jazzy Desktop with VNC and SSH"
+LABEL org.opencontainers.image.source="https://github.com/Avery320/ros2-docker"
+
 ARG TARGETPLATFORM
 ARG TARGETARCH
 ARG QEMU_CPU
