@@ -76,7 +76,3 @@ RUN mkdir -p /home/ubuntu/workspace/src && \
     echo '#!/bin/bash\nsource /opt/ros/$ROS_DISTRO/setup.bash\n[ -f install/setup.bash ] && source install/setup.bash' > /home/ubuntu/workspace/setup_ws.sh && \
     chmod +x /home/ubuntu/workspace/setup_ws.sh && \
     chown -R ubuntu:ubuntu /home/ubuntu/workspace
-
-# 設定額外的 ROS 環境變數
-RUN echo "export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp" >> /home/ubuntu/.bashrc
-

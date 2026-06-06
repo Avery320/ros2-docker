@@ -12,6 +12,7 @@
 
 - 作業系統: Ubuntu 24.04 (Noble)
 - ROS2: Jazzy Desktop + Gazebo
+- ROS Bridge: rosbridge_suite
 - 桌面環境: MATE Desktop
 - 遠端存取: VNC Server (TigerVNC) + noVNC Web 介面 + SSH Server
 - 開發工具: Firefox、VSCodium、Terminator

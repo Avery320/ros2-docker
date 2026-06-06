@@ -104,9 +104,10 @@ RUN apt-get update -q && \
 
 RUN rosdep update
 
-# Install simulation packages
+# Install browser bridge and simulation packages
 RUN apt-get update -q && \
     apt-get install -y \
+    ros-${ROS_DISTRO}-rosbridge-suite \
     ros-${ROS_DISTRO}-ros-gz && \
     rm -rf /var/lib/apt/lists/*
 
