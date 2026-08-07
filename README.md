@@ -41,6 +41,10 @@ Image 名稱: `ros2-industrial-robot:jazzy`
 
 ## 快速開始
 
+### Unitree Go2 開發
+
+Go2 Humble 環境的建立與操作方式，請參考 [Go2 Humble 開發環境](go2_dev/README.md)。完整架構與分階段規格請參考 [Go2 開發環境規格與流程](go2_dev/spec/go2_dev_macos.md)。
+
 ### docker build
 
 ```bash

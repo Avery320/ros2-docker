@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CycloneDDS>
+  <Domain Id="0">
+    <General>
+      <Interfaces>
+        <NetworkInterface name="${GO2_NETWORK_INTERFACE}" />
+      </Interfaces>
+      <ExternalNetworkAddress>${GO2_DDS_EXTERNAL_ADDRESS}</ExternalNetworkAddress>
+      <DontRoute>false</DontRoute>
+      <AllowMulticast>spdp</AllowMulticast>
+    </General>
+
+    <Discovery>
+      <Peers>
+        <Peer Address="${GO2_DDS_PEER_ADDRESS}" />
+      </Peers>
+      <ParticipantIndex>auto</ParticipantIndex>
+    </Discovery>
+
+  </Domain>
+</CycloneDDS>

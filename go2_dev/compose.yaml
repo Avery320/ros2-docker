@@ -1,0 +1,41 @@
+name: go2_dev
+
+services:
+  go2_humble:
+    # 直接使用 Unitree 官方 repository 內提供的 Humble Dockerfile。
+    # 這裡不複製、不改寫官方 Dockerfile，也不重新定義 Unitree ROS 2 套件。
+    build:
+      context: ./unitree_ros2/.devcontainer
+      dockerfile: Dockerfile-humble
+
+    image: go2-humble:official
+    container_name: go2_humble
+
+    # 將完整的 Unitree 官方 repository 掛載至官方 Dockerfile 預設的工作目錄。
+    # CycloneDDS 設定由本專案管理，不修改 Unitree 官方 repository。
+    volumes:
+      - ./unitree_ros2:/workspace:cached
+      - ./config/cyclonedds/go2_humble.xml:/config/cyclonedds/go2_humble.xml:ro
+
+    # 每台開發電腦由自己的 .env 提供網路介面與 DDS 位址。
+    env_file:
+      - ./.env
+
+    environment:
+      # Go2 與 Humble 的 ROS 2 middleware 固定使用 CycloneDDS。
+      RMW_IMPLEMENTATION: rmw_cyclonedds_cpp
+      CYCLONEDDS_URI: file:///config/cyclonedds/go2_humble.xml
+      ROS_DOMAIN_ID: "0"
+
+    # 沿用 Unitree 官方 devcontainer 的 host network 設定。
+    network_mode: host
+    privileged: true
+
+    # 開發階段保留互動式終端能力，方便後續手動執行官方 build 與測試指令。
+    stdin_open: true
+    tty: true
+    init: true
+
+    # 官方 devcontainer Compose 也是以常駐 command 保持開發容器運行。
+    # 容器啟動時不自動編譯 workspace，也不啟動控制程式。
+    command: /bin/sh -c "while sleep 1000; do :; done"

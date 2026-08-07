@@ -68,3 +68,7 @@ Desktop.ini
 .vs/
 *.vcxproj.user
 *.sln.DotSettings
+
+# Go2 本機網路設定
+/go2_dev/.env
+/go2_dev/spec/jetson_dds_spec.md
